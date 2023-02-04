@@ -1,5 +1,9 @@
 import Head from 'next/head';
 
+import ColdChambers from './ColdChambers';
+
+import DataGrid from '../Components/DataGrid';
+
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -92,6 +96,29 @@ export default function Home() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const dataGrid = {
+    columns: [
+      { field: 'id', headerName: 'ID', width: 70 ,width: 90 },
+      { field: 'firstName', headerName: 'Name', width: 130,width: 90  },
+      { field: 'lastName', headerName: 'Last name', width: 130, width: 90 },
+      { field: 'age', headerName: 'Age', type: 'number', width: 90 },
+      { field: 'fullName', headerName: 'Full name', description: 'This column has a value getter and is not sortable.', sortable: false,width: 150 },
+    ],
+    rows: [
+      { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35, fullName: 'Jon Snow' },
+      { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42, fullName: 'Cersei Lannister' },
+      { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45, fullName: 'Jaime Lannister' },
+      { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16, fullName: 'Arya Stark' },
+      { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null, fullName: 'Daenerys Targaryen' },
+      { id: 6, lastName: 'Melisandre', firstName: null, age: 150, fullName: 'Melisandre' },
+      { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44, fullName: 'Ferrara Clifford' },
+      { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36, fullName: 'Rossini Frances' },
+      { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65, fullName: 'Harvey Roxie' },
+
+    ],
+  };
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -118,7 +145,7 @@ export default function Home() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Controle 
+            Controle
           </Typography>
         </Toolbar>
       </AppBar>
@@ -134,26 +161,26 @@ export default function Home() {
         <Divider />
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: 'block' , mardin: 5 }}>
-                <ListItemButton
+            <ListItem key={text} disablePadding sx={{ display: 'block', mardin: 5 }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
           ))}
         </List>
         <Divider />
@@ -182,8 +209,10 @@ export default function Home() {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-       
+      <Box component="main" sx={{flexGrow: 1,  p: 3, mt: 7}}>
+
+        <ColdChambers data={dataGrid}/>
+
       </Box>
     </Box>
   );
