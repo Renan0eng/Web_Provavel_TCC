@@ -19,6 +19,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 240;
@@ -91,33 +92,50 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function Home() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [id, setId] = React.useState(0)
 
-  const dataGrid = {
+  let render = ""
+
+  const [dataGrid, setDataGrid] = React.useState({
     columns: [
       { field: 'id', headerName: 'ID', description: 'ID de Comtrole', width: 50 },
-      { field: 'nome', headerName: 'Nome', description: 'Nome do Comtrole', width: 150 },
-      { field: 'descricao', headerName: 'Descrição', description: 'Descrição do Comtrole', width: 150 },
-      { field: 'tipo', headerName: 'Tipo', description: 'Tipo do Comtrole', width: 150 },
-      { field: 'valor', headerName: 'Valor', description: 'Valor do Comtrole', width: 150 },
+      { field: 'nome', headerName: 'Nome', description: 'Nome do Comtrole', width: 150, editable: true },
+      { field: 'descricao', headerName: 'Descrição', description: 'Descrição do Comtrole', width: 150, editable: true },
+      { field: 'tipo', headerName: 'Tipo', description: 'Tipo do Comtrole', width: 150, editable: true },
+      { field: 'valor', headerName: 'Valor', description: 'Valor do Comtrole', width: 150, editable: true },
     ],
     rows: [
-      { id: 1, nome: 'Nome 1', descricao: 'Descrição 1', tipo: 'Tipo 1', valor: 'Valor 1' },
-      { id: 2, nome: 'Nome 2', descricao: 'Descrição 2', tipo: 'Tipo 2', valor: 'Valor 2' },
-      { id: 3, nome: 'Nome 3', descricao: 'Descrição 3', tipo: 'Tipo 3', valor: 'Valor 3' },
-      { id: 4, nome: 'Nome 4', descricao: 'Descrição 4', tipo: 'Tipo 4', valor: 'Valor 4' },
-      { id: 5, nome: 'Nome 5', descricao: 'Descrição 5', tipo: 'Tipo 5', valor: 'Valor 5' },
-      { id: 6, nome: 'Nome 6', descricao: 'Descrição 6', tipo: 'Tipo 6', valor: 'Valor 6' },
-      { id: 7, nome: 'Nome 7', descricao: 'Descrição 7', tipo: 'Tipo 7', valor: 'Valor 7' },
-      { id: 8, nome: 'Nome 8', descricao: 'Descrição 8', tipo: 'Tipo 8', valor: 'Valor 8' },
-      { id: 9, nome: 'Nome 9', descricao: 'Descrição 9', tipo: 'Tipo 9', valor: 'Valor 9' },
-      { id: 10, nome: 'Nome 10', descricao: 'Descrição 10', tipo: 'Tipo 10', valor: 'Valor 10' },
-      { id: 11, nome: 'Nome 11', descricao: 'Descrição 11', tipo: 'Tipo 11', valor: 'Valor 11' },
-      { id: 12, nome: 'Nome 12', descricao: 'Descrição 12', tipo: 'Tipo 12', valor: 'Valor 12' },
-      { id: 13, nome: 'Nome 13', descricao: 'Descrição 13', tipo: 'Tipo 13', valor: 'Valor 13' },
-      { id: 14, nome: 'Nome 14', descricao: 'Descrição 14', tipo: 'Tipo 14', valor: 'Valor 14' },
-      { id: 15, nome: 'Nome 15', descricao: 'Descrição 15', tipo: 'Tipo 15', valor: 'Valor 15' },
     ]
+  });
+
+  const newItem = {
+    id: id,
+    nome: '',
+    descricao: '',
+    tipo: '',
+    valor: ''
   };
+
+  function addItem(array, item) {
+
+    let copyRows = Object.assign([], dataGrid.rows);
+
+    copyRows.push(item ? item : newItem);
+
+    console.log(copyRows);
+
+    let copyDataGrid = Object.assign({}, dataGrid);
+
+    copyDataGrid.rows = copyRows;
+
+    setDataGrid(copyDataGrid);
+
+    setId(id + 1);
+
+    console.log(dataGrid);
+  }
+
+
 
   const gridWidth = dataGrid.columns.reduce((acc, column) => acc + column.width, 10);
 
@@ -165,53 +183,92 @@ export default function Home() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block', mardin: 5 }}>
-              <ListItemButton
+          <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+              onClick={() => {
+                addItem();
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Dash Board"} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"name"} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
+          <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Dash Board"} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"name"} sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Box component="main" sx={{
@@ -221,7 +278,6 @@ export default function Home() {
         alignItems: "center",
         justifyContent: "center"
       }}>
-
         <Box sx={{ height: 100, width: '100%' }}>
           <Typography variant="h6" noWrap align='center' component="div">
             Grupos de comtrole
@@ -232,11 +288,12 @@ export default function Home() {
 
           <Box sx={{ height: 400, width: "100%", maxWidth: gridWidth, alignSelf: "center" }}>
             <DataGrid
+              experimentalFeatures={{ newEditingApi: true }}
               sx={{ backgroundColor: "#ccc", borderColor: "#ccc", borderWidth: 5, borderStyle: "solid" }}
               {...dataGrid}
               onCellDoubleClick={
                 (params, event) => {
-                  console.log('cell clicked:',params);
+                  console.log('cell clicked:', params);
                 }
               }
             />
