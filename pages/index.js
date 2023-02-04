@@ -1,4 +1,4 @@
-import DataGrid from '../components/DataGrid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
@@ -1191,7 +1191,27 @@ export default function Home() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 7 }}>
 
         <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid data={dataGrid} />
+          <div style={{ marginTop: 70, height: 400, width: 530 }}>
+            <DataGrid
+              sx={{ backgroundColor: "#ccc", borderColor: "#ccc", borderWidth: 5, borderStyle: "solid" }}
+              {...dataGrid}
+              onCellDoubleClick={
+                (params, event) => {
+                  console.log('cell clicked:',
+                    "ID:", params.row.id,
+                    "Age:", params.row.age,
+                    "First name:", params.row.firstName,
+                    "Full name:", params.row.fullName,
+                    "Last name:", params.row.lastName
+                  );
+                }
+              }
+              components={{
+                Toolbar: GridToolbar,
+                ToolbarColor: "inherit",
+              }}
+            />
+          </div>
         </Box>
 
       </Box>
