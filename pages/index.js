@@ -1191,7 +1191,7 @@ export default function Home() {
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 7 }}>
 
         <Box sx={{ height: 400, width: '100%' }}>
-          <ColdChambers data={dataGrid} />
+          sdfsdfsdf
         </Box>
 
       </Box>
