@@ -1,9 +1,5 @@
 import * as React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { useDemoData } from '@mui/x-data-grid-generator';
-
-
-
 
 export default function BasicExampleDataGrid({ data }) {
 
@@ -18,7 +14,6 @@ export default function BasicExampleDataGrid({ data }) {
             }
           }
         }
-        on
       />
     </div>
   );
