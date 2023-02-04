@@ -1,8 +1,4 @@
-import Head from 'next/head';
-
-import ColdChambers from './ColdChambers';
-
-import DataGrid from '../Components/DataGrid';
+import ColdChambers from '../Components/ColdChambers';
 
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
