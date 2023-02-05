@@ -138,7 +138,7 @@ export default function Home() {
 
 
 
-  const gridWidth = dataGrid.columns.reduce((acc, column) => acc + column.width, 10);
+  const gridWidth = dataGrid.columns.reduce((acc, column) => acc + column.width, 50);
 
 
 
