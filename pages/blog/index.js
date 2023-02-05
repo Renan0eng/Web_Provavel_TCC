@@ -269,7 +269,7 @@ export default function Home() {
               Pretendo documentar meu progresso como programador e compartilhar alguns dos projetos que tenho desenvolvido. Aqui você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
           </Box>
-          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc" }}>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%", width: "100%" }}>
             <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
               Sobre mim, um programador apaixonado
             </Typography>
@@ -277,7 +277,7 @@ export default function Home() {
               Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
           </Box>
-          <Box p={1} sx={{ textAlign: "center",borderTop: "1px solid #ccc" }}>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%" }}>
             <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
               Entre em Contato
             </Typography>
@@ -307,7 +307,7 @@ export default function Home() {
             </Link>
           </Box>
 
-          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc" }}>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%" }}>
             <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
               Projetos
             </Typography>
