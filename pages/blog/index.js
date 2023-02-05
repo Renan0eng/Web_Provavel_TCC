@@ -186,7 +186,7 @@ export default function Home() {
         <Divider />
         <List >
           <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link href="http://localhost:3000/">
+            <Link href="/">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -210,7 +210,7 @@ export default function Home() {
             </Link>
           </ListItem>
           <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link href="http://localhost:3000/blog">
+            <Link href="/blog">
               <ListItemButton
                 sx={{
                   minHeight: 48,
