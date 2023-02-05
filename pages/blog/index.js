@@ -23,6 +23,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import BookIcon from '@mui/icons-material/Book';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
+
 import Link from 'next/link';
 
 const drawerWidth = 240;
@@ -184,9 +189,10 @@ export default function Home() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List >
+        <List style={{ textDecoration: "none" }} >
           <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link href="/">
+            <Link
+              href="/">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -205,12 +211,12 @@ export default function Home() {
                 >
                   <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Dash Board"} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={"Dash Board"} style={{ opacity: open ? 1 : 0, color: "#555", textDecoration: "none" }} />
               </ListItemButton>
             </Link>
           </ListItem>
           <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link href="/blog">
+            <Link style={{ fontWeight: 'bold' }} href="/blog">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -227,7 +233,7 @@ export default function Home() {
                 >
                   <BookIcon />
                 </ListItemIcon>
-                <ListItemText primary={"Blog"} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary={"Blog"} style={{ opacity: open ? 1 : 0, color: "#555", textDecoration: "none" }} />
               </ListItemButton>
             </Link>
           </ListItem>
@@ -235,21 +241,127 @@ export default function Home() {
         <Divider />
       </Drawer>
       <Box component="main" sx={{
-        p: 3,
-        mt: 7,
+        pt: 10,
         display: 'flex',
         flexDirection: 'column',
         width: "100%"
       }}>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-          <Typography variant="h1" component="h2" gutterBottom>
-            Blog
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: "center" }}>
+
+          <Typography variant="h2" component="h2" gutterBottom>
+            Renan Nardi
           </Typography>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Bem-vindo ao meu blog de desenvolvimento!
+          </Typography>
+
+          <Typography variant="p" gutterBottom>
+            Aqui você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+          </Typography>
+
+          <Box p={1} sx={{ textAlign: "center" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Oque pretendo fazer aqui?
+            </Typography>
+
+            <Typography variant="body1" gutterBottom>
+              Pretendo documentar meu progresso como programador e compartilhar alguns dos projetos que tenho desenvolvido. Aqui você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+            </Typography>
+          </Box>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Sobre mim, um programador apaixonado
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+            </Typography>
+          </Box>
+          <Box p={1} sx={{ textAlign: "center",borderTop: "1px solid #ccc" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Entre em Contato
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Se você estiver interessado em entrar em contato comigo para discutir algum projeto ou compartilhar suas ideias, basta me enviar uma mensagem pelas minhasredes sociais ou pelo meu email.
+            </Typography>
+
+            <Link href={"https://www.instagram.com/renan_nardii/"} >
+              <IconButton>
+                <InstagramIcon />
+              </IconButton>
+            </Link>
+            <Link href={"https://www.linkedin.com/in/renan-nardi-0b0b1b1b9/"} >
+              <IconButton>
+                <LinkedInIcon />
+              </IconButton>
+            </Link>
+            <Link href={"https://github.com/Renan0eng"} >
+              <IconButton>
+                <GitHubIcon />
+              </IconButton>
+            </Link>
+            <Link href={"mailto:renan.nardi.dev@gmail.com"} >
+              <IconButton>
+                <EmailIcon />
+              </IconButton>
+            </Link>
+          </Box>
+
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Projetos
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Aqui estão alguns dos projetos que tenho desenvolvido. Clique em um projeto para saber mais sobre ele.
+            </Typography>
+
+            <Box>
+              <Box pt={5}>
+                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </Link>
+                <Typography variant="h6" gutterBottom>
+                  ESP32 Web Server - Temperature Data
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Este é um projeto em C++ para criar um servidor web com o ESP32 que exibe dados de temperatura em tempo real.
+                </Typography>
+              </Box>
+              <Box pt={3}>
+                <Link href={"https://github.com/Renan0eng/Provavel_TCC"} >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </Link>
+                <Typography variant="h6" gutterBottom>
+                  Sistema de Controle de produção e abate de peixe
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Este é um projeto em C# para criar um sistema de controle de produção de peixe.<br />
+                  E comtrole da parte do frigorifico de abate de peixe.<br />
+                  Onde o sistema ira controlar a temperatura, o tempo de abate, o tempo de resfriamento, o tempo de limpeza, o tempo de desinfecção, o tempo de secagem, o tempo de embalagem, e tempo de armazenamento.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{
+            mt: 8,
+            width: "100%",
+            backgroundColor: "#333",
+            color: "#fff",
+            padding: 2,
+            bottom: 0,
+            textAlign: "center"
+          }}
+          >
+            <Typography variant="p" gutterBottom>
+              Copyright &copy; 2023 - Todos os direitos reservados
+            </Typography>
+          </Box>
         </Box>
-
-
-      </Box >
+      </Box>
     </Box >
   );
 }

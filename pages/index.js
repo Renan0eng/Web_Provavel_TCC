@@ -208,25 +208,25 @@ export default function Home() {
             </ListItemButton>
           </ListItem>
           <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link href="http://localhost:3000/blog">
-                <ListItemButton
+            <Link style={{ fontWeight: 'bold' }} href="/blog">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5
+                }}
+              >
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
                   }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <BookIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={"Blog"} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
+                  <BookIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Blog"} style={{ opacity: open ? 1 : 0, color: "#555", textDecoration: "none" }} />
+              </ListItemButton>
             </Link>
           </ListItem>
         </List>
