@@ -1,9 +1,6 @@
 import React from "react";
 
-import Router from "next/router";
-
 import Nav from "../../Components/Nav"
-import Blog from "../../Components/blog"
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -76,12 +73,6 @@ export default function Home() {
         </Box>
       </Box>
     );
-  }
-
-  function navegate (url) {
-
-    console.log(url)
-    // url ? Router.push(url): null
   }
 
 
