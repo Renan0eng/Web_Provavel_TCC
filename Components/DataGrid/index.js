@@ -6,8 +6,7 @@ import Box from '@mui/material/Box';
 export default function BasicExampleDataGrid({ gridWidth, dataGrid }) {
 
   return (
-    <div style={{ height: 400, width: "100%", alignSelf: "center", display: "flex", justifyContent: "space-evenly" }}>
-      <Box sx={{ height: 400, width: "100%", maxWidth: gridWidth, alignSelf: "center" }}>
+      <Box sx={{ height: 450, width: "100%", maxWidth: gridWidth, alignSelf: "center",padding: 3}}>
         <DataGrid
           experimentalFeatures={{ newEditingApi: true }}
           {...dataGrid}
@@ -16,9 +15,10 @@ export default function BasicExampleDataGrid({ gridWidth, dataGrid }) {
               console.log('cell clicked:', params);
             }
           }
-
+          components={{
+            Toolbar: GridToolbar,
+          }}
         />
       </Box>
-    </div>
   );
 }
