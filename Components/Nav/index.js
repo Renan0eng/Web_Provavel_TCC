@@ -2,9 +2,6 @@ import Grid from '../DataGrid';
 
 import * as React from 'react';
 
-
-import Router from 'next/router';
-
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -93,7 +90,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Home({ navegate }) {
+export default function Home() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [id, setId] = React.useState(1)
