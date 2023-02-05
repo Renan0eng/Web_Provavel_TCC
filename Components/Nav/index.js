@@ -1,6 +1,10 @@
 import Grid from '../DataGrid';
 
 import * as React from 'react';
+
+
+import Router from 'next/router';
+
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -18,9 +22,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import MailIcon from '@mui/icons-material/Mail';
+import BookIcon from '@mui/icons-material/Book';
+import { Link } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -89,12 +93,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Home() {
+export default function Home({ navegate }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [id, setId] = React.useState(1)
-
-  let render = ""
 
   const [dataGrid, setDataGrid] = React.useState({
     columns: [
@@ -192,7 +194,6 @@ export default function Home() {
                 px: 2.5,
               }}
               onClick={() => {
-                addItem();
               }}
             >
               <ListItemIcon
@@ -213,6 +214,9 @@ export default function Home() {
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
+                onClick: () => {
+                  // navegate("blog");
+                }
               }}
             >
               <ListItemIcon
@@ -222,55 +226,13 @@ export default function Home() {
                   justifyContent: 'center',
                 }}
               >
-                <InboxIcon />
+                <BookIcon/>
               </ListItemIcon>
-              <ListItemText primary={"name"} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary={"Blog"} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         </List>
-        <Divider />
-        <List>
-          <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Dash Board"} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={"name"} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <Divider/>
       </Drawer>
       <Box component="main" sx={{
         p: 3,
@@ -279,51 +241,6 @@ export default function Home() {
         flexDirection: 'column',
         width: "100%"
       }}>
-        <Box sx={{ height: 100, width: '100%' }}>
-          <Typography variant="h6" noWrap align='center' component="div">
-            Grupos de comtrole
-          </Typography>
-        </Box>
-        <Box sx={{ width: '100%', flexWrap: "wrap",display: "flex", justifyContent: 'space-around'}}>
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-
-        <Box>
-          <Typography variant="h6" noWrap align='center' component="div">
-          MUSSUM
-          IPSUM
-          </Typography>
-          <Typography p={"4%"}>
-            Mussum Ipsum, cacilds vidis litro abertis. Atirei o pau no gatis, per gatis num morreus.Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!Diuretics paradis num copo é motivis de denguis.Casamentiss faiz malandris se pirulitá.
-
-            Per aumento de cachacis, eu reclamis.In elementis mé pra quem é amistosis quis leo.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.Manduma pindureta quium dia nois paga.
-
-            Admodum accumsan disputationi eu sit. Vide electram sadipscing et per.Paisis, filhis, espiritis santis.Suco de cevadiss deixa as pessoas mais interessantis.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
-
-            Interagi no mé, cursus quis, vehicula ac nisi.Quem manda na minha terra sou euzis!Pra lá , depois divoltis porris, paradis.Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-
-            Delegadis gente finis, bibendum egestas augue arcu ut est.Suco de cevadiss deixa as pessoas mais interessantis.Aenean aliquam molestie leo, vitae iaculis nisl.Copo furadis é disculpa de bebadis, arcu quam euismod magna.
-
-            Mé faiz elementum girarzis, nisi eros vermeio.Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl.
-
-            Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Diuretics paradis num copo é motivis de denguis.Pra lá , depois divoltis porris, paradis.In elementis mé pra quem é amistosis quis leo.
-
-            Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.Copo furadis é disculpa de bebadis, arcu quam euismod magna.Leite de capivaris, leite de mula manquis sem cabeça.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.
-
-            Suco de cevadiss deixa as pessoas mais interessantis.In elementis mé pra quem é amistosis quis leo.Detraxit consequat et quo num tendi nada.Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.
-
-            Sapien in monti palavris qui num significa nadis i pareci latim.Copo furadis é disculpa de bebadis, arcu quam euismod magna.Suco de cevadiss deixa as pessoas mais interessantis.Quem num gosta di mim que vai caçá sua turmis!
-          </Typography>
-
-        </Box>
-
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        {false ? null : <Grid dataGrid={dataGrid} gridWidth={gridWidth}/>}
-        </Box>
-
       </Box >
     </Box >
   );
