@@ -5,6 +5,7 @@ import Nav from "../../Components/Nav"
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from "../../Components/DataGrid"
+import { Button } from "@mui/material";
 
 export default function Home() {
 
@@ -74,18 +75,10 @@ export default function Home() {
     );
   }
 
-  function renderNav() {
-    return (
-      <>
-        <Nav />
-      </>
-    );
-  }
-
 
   return (
     <div>
-      {renderNav()}
+      <Nav  />
       {renderDash()}
     </div>
   );
