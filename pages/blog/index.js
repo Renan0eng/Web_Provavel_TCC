@@ -276,6 +276,16 @@ export default function Home() {
             <Typography variant="body1" gutterBottom>
               Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
+
+            <Link href={"/feed"} >
+              <IconButton sx={{borderRadius: 6 }}>
+                <GitHubIcon />
+                <Typography variant="body1" pl={1} pr={1} gutterBottom >
+                  Feed
+                </Typography>
+              </IconButton>
+            </Link>
+
           </Box>
           <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%" }}>
             <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
