@@ -13,6 +13,8 @@ import Divider from '@mui/material/Divider';
 
 import { useState } from 'react';
 
+
+
 const feed = () => {
 
   const [posts, setPosts] = useState([
@@ -20,8 +22,11 @@ const feed = () => {
       id: 1,
       title: 'Post 1',
       description: 'Descrição do post 1',
+      descriptionDetail: 'Descrição detalhada do post 1',
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/1.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -38,14 +43,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ], 
+      ] 
     },
     {
       id: 2,
       title: 'Post 2',
       description: 'Descrição do post 2',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/3.jpeg',
+      descriptionDetail: 'Descrição detalhada do post 2',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/2.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -62,14 +70,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
+      ]
     },
     {
       id: 3,
       title: 'Post 3',
-      description: 'Descrição do post 3',         
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/4.jpeg',
+      description: 'Descrição do post 3',
+      descriptionDetail: 'Descrição detalhada do post 3',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/3.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -86,14 +97,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
+      ]
     },
     {
       id: 4,
       title: 'Post 4',
       description: 'Descrição do post 4',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/5.jpeg',
+      descriptionDetail: 'Descrição detalhada do post 4',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/4.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -110,14 +124,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
+      ]
     },
     {
       id: 5,
       title: 'Post 5',
       description: 'Descrição do post 5',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/6.jpeg',
+      descriptionDetail: 'Descrição detalhada do post 5',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/5.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -134,14 +151,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
+      ]
     },
     {
       id: 6,
       title: 'Post 6',
       description: 'Descrição do post 6',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/7.jpeg',
+      descriptionDetail: 'Descrição detalhada do post 6',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/6.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -158,14 +178,17 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
+      ]
     },
     {
       id: 7,
       title: 'Post 7',
       description: 'Descrição do post 7',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/8.jpeg',
+      descriptionDetail: 'Descrição detalhada do post 7',
+      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/7.jpeg',
       likes: 0,
+      authorId: 1,
+      humor: 'feliz',
       comments: [
         {
           id: 1,
@@ -182,103 +205,7 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ],
-    },
-    {
-      id: 8,
-      title: 'Post 8',
-      description: 'Descrição do post 8',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/9.jpeg',
-      likes: 0,
-      comments: [
-        {
-          id: 1,
-          name: 'Renan',
-          comment: 'Comentário 1'
-        },
-        {
-          id: 2,
-          name: 'Renan',
-          comment: 'Comentário 2'
-        },
-        {
-          id: 3,
-          name: 'Renan',
-          comment: 'Comentário 3'
-        }
-      ],
-    },
-    {
-      id: 9,
-      title: 'Post 9',
-      description: 'Descrição do post 9',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/10.jpeg',
-      likes: 0,
-      comments: [
-        {
-          id: 1,
-          name: 'Renan',
-          comment: 'Comentário 1'
-        },
-        {
-          id: 2,
-          name: 'Renan',
-          comment: 'Comentário 2'
-        },
-        {
-          id: 3,
-          name: 'Renan',
-          comment: 'Comentário 3'
-        }
-      ],
-    },
-    {
-      id: 10,
-      title: 'Post 10',
-      description: 'Descrição do post 10',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/11.jpeg',
-      likes: 0,
-      comments: [
-        {
-          id: 1,
-          name: 'Renan',
-          comment: 'Comentário 1'
-        },
-        {
-          id: 2,
-          name: 'Renan',
-          comment: 'Comentário 2'
-        },
-        {
-          id: 3,
-          name: 'Renan',
-          comment: 'Comentário 3'
-        }
-      ],
-    },
-    {
-      id: 11,
-      title: 'Post 11',
-      description: 'Descrição do post 11',
-      image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/12.jpeg',
-      likes: 0,
-      comments: [
-        {
-          id: 1,
-          name: 'Renan',
-          comment: 'Comentário 1'
-        },
-        {
-          id: 2,
-          name: 'Renan',
-          comment: 'Comentário 2'
-        },
-        {
-          id: 3,
-          name: 'Renan',
-          comment: 'Comentário 3'
-        }
-      ],
+      ]
     },
   ]);
 
@@ -297,10 +224,6 @@ const feed = () => {
         alignItems: 'center', 
         flexDirection: 'row',
         }}>
-
-          {/* Header navegate */}
-
-          
           <List 
           sx={{
             width: '100%',
@@ -313,36 +236,16 @@ const feed = () => {
             p: 1,
             m: 3,
           }}>
-          <ListItem key={"Dashboard"} disablePadding sx={{ mdisplay: 'block', mardin: 5 }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                px: 2.5,
-              }}
-              onClick={() => {
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  justifyContent: 'center',
-                }}
-              >
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Dash Board"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+          <ListItem key={"text"} disablePadding sx={{mardin: 5 }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
+                  borderRadius: 2,
                   px: 2.5
                 }}
               >
                 <ListItemIcon
                   sx={{
-                    minWidth: 0,
                     justifyContent: 'center',
                   }}
                 >
@@ -351,18 +254,18 @@ const feed = () => {
                 <ListItemText primary={"Blog"} />
               </ListItemButton>
           </ListItem>
-          <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+          <ListItem key={"Dashboard"} disablePadding sx={{mardin: 5 }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
-                px: 2.5,
+                borderRadius: 2,
+                px: 2.5
               }}
               onClick={() => {
               }}
             >
               <ListItemIcon
                 sx={{
-                  minWidth: 0,
                   justifyContent: 'center',
                 }}
               >
@@ -370,62 +273,6 @@ const feed = () => {
               </ListItemIcon>
               <ListItemText primary={"Dash Board"} />
             </ListItemButton>
-          </ListItem>
-          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  px: 2.5
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <BookIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Blog"} />
-              </ListItemButton>
-          </ListItem>
-          <ListItem key={"Dashboard"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                px: 2.5,
-              }}
-              onClick={() => {
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  justifyContent: 'center',
-                }}
-              >
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Dash Board"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  px: 2.5
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    justifyContent: 'center',
-                  }}
-                >
-                  <BookIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Blog"} />
-              </ListItemButton>
           </ListItem>
         </List>
 
