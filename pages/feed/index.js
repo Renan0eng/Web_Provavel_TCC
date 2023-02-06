@@ -10,12 +10,27 @@ import BookIcon from '@mui/icons-material/Book';
 import Link from 'next/link';
 import Divider from '@mui/material/Divider';
 
+import { useRouter } from 'next/router';
 
 import { useState } from 'react';
+import { Button } from '@mui/material';
 
+export async function getStaticProps() {
 
+  const data = await fetch('http://192.168.71.213:3001/posts');
 
-const feed = () => {
+  const posts = await data.json();
+
+  return {
+    props: {
+      posts
+    }
+  }
+}
+
+const feed = ({/* posts */ }) => {
+
+  const router = useRouter();
 
   const [posts, setPosts] = useState([
     {
@@ -43,7 +58,7 @@ const feed = () => {
           name: 'Renan',
           comment: 'Comentário 3'
         }
-      ] 
+      ]
     },
     {
       id: 2,
@@ -165,7 +180,7 @@ const feed = () => {
       comments: [
         {
           id: 1,
-          name: 'Renan',
+          authorId: 'Renan',
           comment: 'Comentário 1'
         },
         {
@@ -210,111 +225,120 @@ const feed = () => {
   ]);
 
   return (
-      <Box style={{ 
-        backgroundColor: '#ccc', 
-        width: '100%', 
-        backgroundSize: 'cover',  
-        position: 'absolute', 
-        flexWrap: "wrap",
-        top: '0', 
-        left: '0', 
-        right: '0', 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        flexDirection: 'row',
+    <Box style={{
+      backgroundColor: '#ccc',
+      width: '100%',
+      backgroundSize: 'cover',
+      position: 'absolute',
+      flexWrap: "wrap",
+      top: '0',
+      left: '0',
+      right: '0',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'row',
+    }}>
+      <List
+        sx={{
+          width: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          borderRadius: '10px',
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          flexDirection: 'row',
+          p: 1,
+          m: 3,
         }}>
-          <List 
-          sx={{
+        <ListItem key={"text"} disablePadding sx={{ mardin: 5 }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              borderRadius: 2,
+              px: 2.5
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                justifyContent: 'center',
+              }}
+            >
+              <BookIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Blog"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key={"Dashboard"} disablePadding sx={{ mardin: 5 }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              borderRadius: 2,
+              px: 2.5
+            }}
+            onClick={() => {
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                justifyContent: 'center',
+              }}
+            >
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Dash Board"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+
+      {posts.map((post) => (
+        <Button color="inherit" sx={{
+          backgroundImage: `url('${post.image}')`,
+          m: 3,
+          p: 0,
+          width: '300px',
+          height: '300px',
+          backgroundSize: 'cover',
+          borderRadius: '10px',
+          boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-end',
+          marginTop: '20px',
+          cursor: 'default',
+        }}
+        onClick={(e) => {
+          (e) => {
+            e.preventDefault()
+            router.push(`/post/${post.id}`)
+          }
+        }}
+        >
+          <Box sx={{
             width: '100%',
+            height: '20%',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             borderRadius: '10px',
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'center',
             alignItems: 'center',
-            flexDirection: 'row',
-            p: 1,
-            m: 3,
+            flexDirection: 'column',
+            pt: 2,
+            pb: 1,
+            color: 'rgba(255, 255, 255, 0.5)',
           }}>
-          <ListItem key={"text"} disablePadding sx={{mardin: 5 }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  borderRadius: 2,
-                  px: 2.5
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    justifyContent: 'center',
-                  }}
-                >
-                  <BookIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Blog"} />
-              </ListItemButton>
-          </ListItem>
-          <ListItem key={"Dashboard"} disablePadding sx={{mardin: 5 }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                borderRadius: 2,
-                px: 2.5
-              }}
-              onClick={() => {
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  justifyContent: 'center',
-                }}
-              >
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Dash Board"} />
-            </ListItemButton>
-          </ListItem>
-        </List>
+            <Typography variant="h5" component="div" gutterBottom>
+              {post.title}
+            </Typography>
 
-        {posts.map((post) => (
-            <Box sx={{ 
-              backgroundImage: `url('${post.image}')`, 
-              m: 3, 
-              width: '300px',
-              height: '300px',
-              backgroundSize: 'cover',
-              borderRadius: '10px',
-              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-              marginTop: '20px'
-              }}>
-              <Box sx={{ 
-                width: '100%',
-                height: '20%',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                borderRadius: '10px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                pt: 2,
-                pb: 1,
-                color: 'rgba(255, 255, 255, 0.5)',
-              }}>
-                <Typography variant="h5" component="div" gutterBottom>
-                  {post.title}
-                </Typography>
-
-                <Typography variant="h6" gutterBottom component="div">
-                  {post.description}
-                </Typography>
-              </Box>
-            </Box>
-          ))  
-        }
-      </Box>
+            <Typography variant="h6" gutterBottom component="div">
+              {post.description}
+            </Typography>
+          </Box>
+        </Button>
+      ))
+      }
+    </Box>
   );
 }
 
