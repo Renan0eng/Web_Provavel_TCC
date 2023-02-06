@@ -277,7 +277,7 @@ export default function Home() {
               Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
 
-            <Link href={"/feed"} >
+            <Link href={"/feed"} target={"_blank"}>
               <IconButton sx={{borderRadius: 6 }}>
                 <GitHubIcon />
                 <Typography variant="body1" pl={1} pr={1} gutterBottom >
@@ -295,22 +295,22 @@ export default function Home() {
               Se você estiver interessado em entrar em contato comigo para discutir algum projeto ou compartilhar suas ideias, basta me enviar uma mensagem pelas minhasredes sociais ou pelo meu email.
             </Typography>
 
-            <Link href={"https://www.instagram.com/renan_nardii/"} >
+            <Link href={"https://www.instagram.com/renan_nardii/"} target={"_blank"} >
               <IconButton>
                 <InstagramIcon />
               </IconButton>
             </Link>
-            <Link href={"https://www.linkedin.com/in/renan-nardi-0b0b1b1b9/"} >
+            <Link href={"https://www.linkedin.com/in/renan-nardi-0b0b1b1b9/"} target={"_blank"} >
               <IconButton>
                 <LinkedInIcon />
               </IconButton>
             </Link>
-            <Link href={"https://github.com/Renan0eng"} >
+            <Link href={"https://github.com/Renan0eng"} target={"_blank"} >
               <IconButton>
                 <GitHubIcon />
               </IconButton>
             </Link>
-            <Link href={"mailto:renan.nardi.dev@gmail.com"} >
+            <Link href={"mailto:renan.nardi.dev@gmail.com"} target={"_blank"} >
               <IconButton>
                 <EmailIcon />
               </IconButton>
@@ -327,7 +327,7 @@ export default function Home() {
 
             <Box>
               <Box pt={5}>
-                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} >
+                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} target={"_blank"} >
                   <IconButton>
                     <GitHubIcon />
                   </IconButton>
@@ -340,7 +340,7 @@ export default function Home() {
                 </Typography>
               </Box>
               <Box pt={3}>
-                <Link href={"https://github.com/Renan0eng/Provavel_TCC"} >
+                <Link href={"https://github.com/Renan0eng/Provavel_TCC"} target={"_blank"} >
                   <IconButton>
                     <GitHubIcon />
                   </IconButton>
