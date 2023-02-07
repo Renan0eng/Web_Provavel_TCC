@@ -29,6 +29,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
 
 import Link from 'next/link';
+import { display, width } from '@mui/system';
 
 const drawerWidth = 240;
 
@@ -277,7 +278,7 @@ export default function Home() {
               Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
 
-            <Link href={"/feed"} target={"_blank"}>
+            <Link href={"/blog/feed"} target={"_blank"}>
               <IconButton sx={{borderRadius: 6 }}>
                 <GitHubIcon />
                 <Typography variant="body1" pl={1} pr={1} gutterBottom >
@@ -363,12 +364,18 @@ export default function Home() {
             color: "#fff",
             padding: 2,
             bottom: 0,
-            textAlign: "center"
+            textAlign: "center",
           }}
           >
             <Typography variant="p" gutterBottom>
               Copyright &copy; 2023 - Todos os direitos reservados
             </Typography>
+            <Link href={"/blog/login"} target={"_blank"}>
+              <Box sx={{width:"100%", height:"10%",backgroundColor: "#333"}}>
+
+              </Box>
+            </Link>
+
           </Box>
         </Box>
       </Box>

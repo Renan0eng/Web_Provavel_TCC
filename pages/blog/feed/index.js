@@ -7,13 +7,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import BookIcon from '@mui/icons-material/Book';
+import StarIcon from '@mui/icons-material/Star';
 import Link from 'next/link';
 import Divider from '@mui/material/Divider';
 
 import { useRouter } from 'next/router';
 
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, FavoriteIcon } from '@mui/material';
 
 export async function getStaticProps() {
 
@@ -28,18 +29,18 @@ export async function getStaticProps() {
   }
 }
 
-const feed = ({/* posts */ }) => {
+const feed = ({ posts  }) => {
 
   const router = useRouter();
 
-  const [posts, setPosts] = useState([
+  const [postes, setPosts] = useState([
     {
-      id: 1,
+      id: 0,
       title: 'Post 1',
       description: 'Descrição do post 1',
       descriptionDetail: 'Descrição detalhada do post 1',
       image: 'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/instagram-clone/1.jpeg',
-      likes: 0,
+      likes: 10,
       authorId: 1,
       humor: 'feliz',
       comments: [
@@ -292,50 +293,69 @@ const feed = ({/* posts */ }) => {
       </List>
 
       {posts.map((post) => (
-        <Button color="inherit" sx={{
-          backgroundImage: `url('${post.image}')`,
-          m: 3,
-          p: 0,
-          width: '300px',
-          height: '300px',
-          backgroundSize: 'cover',
-          borderRadius: '10px',
-          boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-          marginTop: '20px',
-          cursor: 'default',
+        <Link color="inherit" style={{
+          textDecoration: 'none',
         }}
-        onClick={(e) => {
-          (e) => {
-            e.preventDefault()
-            router.push(`/post/${post.id}`)
-          }
-        }}
+          href={`/blog/feed/${post.id}`}
         >
-          <Box sx={{
-            width: '100%',
-            height: '20%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            borderRadius: '10px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-            pt: 2,
-            pb: 1,
-            color: 'rgba(255, 255, 255, 0.5)',
-          }}>
-            <Typography variant="h5" component="div" gutterBottom>
-              {post.title}
-            </Typography>
+          <Button
+            color="inherit" 
+            sx={{
+              backgroundImage: `url('${post.image}')`,
+              m: 3,
+              p: 0,
+              width: '300px',
+              height: '300px',
+              backgroundSize: 'cover',
+              borderRadius: '10px',
+              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+              marginTop: '20px',
+            }}>
+            <Box sx={{
+              width: '100%',
+              height: '20%',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              borderRadius: '10px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              pt: 2,
+              pb: 1,
+              color: 'rgba(255, 255, 255, 0.5)',
+            }}>
+              <Box sx={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                flexDirection: 'row',
+                px: 2,
+              }}>
+                <Typography variant="h5" component="div" gutterBottom>
+                  {post.title}
+                </Typography>
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}>
+                <Typography variant="h5" pr={1} p={0} component="div" gutterBottom>
+                  {post.likes}
+                </Typography>
+                <StarIcon />
+                </Box>
+              </Box>
 
-            <Typography variant="h6" gutterBottom component="div">
-              {post.description}
-            </Typography>
-          </Box>
-        </Button>
+              <Typography variant="h6" gutterBottom component="div">
+                {post.description}
+              </Typography>
+            </Box>
+          </Button>
+        </Link>
       ))
       }
     </Box>
