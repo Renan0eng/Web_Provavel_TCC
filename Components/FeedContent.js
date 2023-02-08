@@ -44,7 +44,7 @@ export default function FeedContent({posts}) {
           <Avatar
             src="https://i.pravatar.cc/40?img=3"
             srcSet="https://i.pravatar.cc/80?img=3"
-            sx={{ borderRadius: 'sm' }}
+            sx={{ borderRadius: 'xl' }}
           />
           <Box sx={{ ml: 2 }}>
             <Typography level="body2" textColor="text.primary" mb={0.5}>
@@ -109,6 +109,7 @@ export default function FeedContent({posts}) {
               display: 'flex',
               flexWrap: 'wrap',
               gap: 2,
+              mb: 3,
               '& > div': {
                 boxShadow: 'none',
                 '--Card-padding': '0px',
@@ -131,6 +132,69 @@ export default function FeedContent({posts}) {
           </Box>
         ))}
       </Box></>:null}
+      <Divider />
+      <Typography fontWeight="md" fontSize="sm" mt={2} mb={2}>
+        Contents
+      </Typography>
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 0.5,
+          '& > div': {
+            boxShadow: 'none',
+            '--Card-padding': '0px',
+            '--Card-radius': theme.vars.radius.sm,
+          },
+        })}
+      >
+        {posts.contents.map((content, index) => (<>
+          <Box
+            sx={(theme) => ({
+              width: '90%',
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              gap: 2,
+              '& > div': {
+                boxShadow: 'none',
+                '--Card-padding': '0px',
+                '--Card-radius': theme.vars.radius.sm,
+              },
+            })}
+          >
+            <Avatar
+              src='https://i.pravatar.cc/40?img=3'
+              srcSet='https://i.pravatar.cc/80?img=3'
+              sx={{ borderRadius: 'xl', width: 30, height: 30}}
+            />
+            <Typography level="body2" textColor="#999">
+              {content.authorName}
+            </Typography>
+          </Box>
+          <Box
+            sx={(theme) => ({
+              display: 'flex',
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              alignItems: 'start',
+              gap: 2,
+              width: '100%',
+              borderBottom: '1px solid  #333',
+              '& > div': {
+                boxShadow: 'none',
+                '--Card-padding': '0px',
+                '--Card-radius': theme.vars.radius.sm,
+              },
+            })}
+          >
+            <Typography level="body2" textColor="#999" mb={0.5}>
+              {content.desc}
+            </Typography>
+          </Box>
+        </>))}
+      </Box>
     </Sheet>
   );
 }
