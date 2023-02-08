@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import { useRouter } from 'next/router';
 
-import Grid from "../../Components/DataGrid";
-
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
