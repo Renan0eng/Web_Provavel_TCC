@@ -18,10 +18,10 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import emailTheme from '../public/theme';
-import Menu from '../components/Menu';
-import Layout from '../components/Layout';
-import Navigation from '../components/Navigation';
-import Mails from '../components/Mails';
+import Menu from '../Components/Menu';
+import Layout from '../Components/Layout';
+import Navigation from '../Components/Navigation';
+import Mails from '../Components/Mails';
 import EmailContent from '../Components/FeedContent';
 
 function ColorSchemeToggle() {
@@ -64,9 +64,9 @@ export default function EmailExample() {
     title: 'Yosemite Trip',
     desc: 'Hey guys, I am planning a trip to Yosemite this weekend. Anyone interested?',
     tags: ['yosemite', 'trip', 'weekend'],
-    images: [{image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80',imageLink:'https://domains.google.com/registrar/'},
-    {image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160',imageLink:'https://domains.google.com/registrar/'},
-    {image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80',imageLink:'https://domains.google.com/registrar/'}]
+    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
+    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
+    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }]
   },
   {
     authorName: 'Alex Jonnold',
@@ -76,9 +76,9 @@ export default function EmailExample() {
     title: 'Yosemite Trip',
     desc: 'Hey guys, I am planning a trip to Yosemite this weekend. Anyone interested?',
     tags: ['yosemite', 'trip', 'weekend'],
-    images: [{image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80',imageLink:'https://domains.google.com/registrar/'},
-    {image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160',imageLink:'https://domains.google.com/registrar/'},
-    {image:'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80',imageLink:'https://domains.google.com/registrar/'}]
+    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
+    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
+    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }]
   }]);
 
   return (
