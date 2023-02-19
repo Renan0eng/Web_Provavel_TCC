@@ -326,7 +326,7 @@ export default function Home() {
 
             <Box>
               <Box pt={5}>
-                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} target={"_blank"} >
+                <Link href={"https://github.com/Renan0eng/CodeCampus"} target={"_blank"} >
                   <IconButton>
                     <GitHubIcon />
                   </IconButton>
@@ -336,6 +336,19 @@ export default function Home() {
                 </Typography>
                 <Typography variant="body1" gutterBottom>
                   Este é um projeto em C++ para criar um servidor web com o ESP32 que exibe dados de temperatura em tempo real.
+                </Typography>
+              </Box>
+              <Box pt={5}>
+                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} target={"_blank"} >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </Link>
+                <Typography variant="h6" gutterBottom>
+                  Fórum da Turma de Engenharia de Software
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Este repositório contém um fórum baseado em ReactJS destinado à turma de Engenharia de Software da faculdade. Aqui, os estudantes podem discutir questões relacionadas ao curso, compartilhar conhecimento e colaborar uns com os outros.
                 </Typography>
               </Box>
               <Box pt={3}>
