@@ -1,389 +1,120 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Box from '@mui/joy/Box';
-import Typography from '@mui/joy/Typography';
-import Input from '@mui/joy/Input';
-import IconButton from '@mui/joy/IconButton';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from '../components/Header';
+import MainFeaturedPost from '../components/MainFeaturedPost';
+import FeaturedPost from '../components/FeaturedPost';
+import Main from '../components/Main';
+import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
+// import post1 from '../components/blog-post.1.md';
+// import post2 from '../components/blog-post.2.md';
+// import post3 from '../components/blog-post.3.md';
 
-// Icons import
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import MenuIcon from '@mui/icons-material/Menu';
-import BookRoundedIcon from '@mui/icons-material/BookRounded';
+const sections = [
+  { title: 'Technology', url: '#' },
+  { title: 'Design', url: '#' },
+  { title: 'Culture', url: '#' },
+  { title: 'Business', url: '#' },
+  { title: 'Politics', url: '#' },
+  { title: 'Opinion', url: '#' },
+  { title: 'Science', url: '#' },
+  { title: 'Health', url: '#' },
+  { title: 'Style', url: '#' },
+  { title: 'Travel', url: '#' },
+];
 
-// custom
-import emailTheme from '../public/theme';
-import Menu from '../Components/Menu';
-import Layout from '../Components/Layout';
-import Navigation from '../Components/Navigation';
-import Mails from '../Components/Mails';
-import EmailContent from '../Components/FeedContent';
+const mainFeaturedPost = {
+  title: 'Title of a longer featured blog post',
+  description:
+    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  image: 'https://source.unsplash.com/random',
+  imageText: 'main image description',
+  linkText: 'Continue reading…',
+};
 
-function ColorSchemeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="primary" />;
-  }
-  return (
-    <IconButton
-      id="toggle-mode"
-      size="sm"
-      variant="outlined"
-      color="primary"
-      onClick={() => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-      }}
-    >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
-
-export default function EmailExample() {
-
-  const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-  const [posts, setPosts] = React.useState([{
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-    date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-  ]
+const featuredPosts = [
+  {
+    title: 'Featured post',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageLabel: 'Image Text',
   },
   {
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-    date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-  ]
+    title: 'Post title',
+    date: 'Nov 11',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageLabel: 'Image Text',
   },
-  {
-    authorName: 'Alex Jonnold',
-    authorAvatar: 'https://i.pravatar.cc/40?img=3',
-    authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-    date: '21 Oct 2022',
-    title: 'Yosemite Trip',
-    desc: 'Fale um amigo que vc acha gay',
-    tags: ['yosemite', 'trip', 'weekend'],
-    images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-    { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    contents: [{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },
-    {
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    },{
-      authorId: '1',
-      authorAvatar: 'https://i.pravatar.cc/40?img=3',
-      authorAvatarSet: 'https://i.pravatar.cc/80?img=3',
-      authorName: 'Renan',
-      desc: 'Acho que o matheus é um baita de um cara gay',
-      date: '21 Oct 2022',
-      images: [{ image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160', imageLink: 'https://domains.google.com/registrar/' },
-      { image: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80', imageLink: 'https://domains.google.com/registrar/' }],
-    }
-  ]
-  }
-]);
+];
+
+// const posts = [post2, post3];
+
+const sidebar = {
+  title: 'About',
+  description:
+    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+  archives: [
+    { title: 'March 2020', url: '#' },
+    { title: 'February 2020', url: '#' },
+    { title: 'January 2020', url: '#' },
+    { title: 'November 1999', url: '#' },
+    { title: 'October 1999', url: '#' },
+    { title: 'September 1999', url: '#' },
+    { title: 'August 1999', url: '#' },
+    { title: 'July 1999', url: '#' },
+    { title: 'June 1999', url: '#' },
+    { title: 'May 1999', url: '#' },
+    { title: 'April 1999', url: '#' },
+  ],
+  social: [
+    { name: 'GitHub', icon: GitHubIcon, url: 'https://github.com/Renan0eng' },
+    { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/renan_nardii/' },
+    { name: 'Linkedin', icon: LinkedInIcon, url: 'https://www.linkedin.com/in/renan-nardi-569300223/' },
+  ],
+};
+
+
+export default function Blog() {
+
+const theme = createTheme();
 
   return (
-    <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      {drawerOpen && (
-        <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <Navigation />
-        </Layout.SideDrawer>
-      )}
-      <Layout.Root
-        sx={{
-          ...(drawerOpen && {
-            height: '100vh',
-            overflow: 'hidden',
-          }),
-        }}
-      >
-        <Layout.Header>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 1.5,
-            }}
-          >
-            <IconButton
-              variant="outlined"
-              size="sm"
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="solid"
-              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-            >
-              <MailRoundedIcon />
-            </IconButton>
-            <Typography component="h1" fontWeight="xl">
-              Email
-            </Typography>
-          </Box>
-          <Input
-            size="sm"
-            placeholder="Search anything…"
-            startDecorator={<SearchRoundedIcon color="primary" />}
-            endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
-                  /
-                </Typography>
-              </IconButton>
-            }
-            sx={{
-              flexBasis: '500px',
-              display: {
-                xs: 'none',
-                sm: 'flex',
-              },
-            }}
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-            >
-              <SearchRoundedIcon />
-            </IconButton>
-            <IconButton
-              size="sm"
-              variant="outlined"
-              color="primary"
-              component="a"
-              href="/blog"
-            >
-              <BookRoundedIcon />
-            </IconButton>
-            <Menu
-              id="app-selector"
-              control={
-                <IconButton
-                  size="sm"
-                  variant="outlined"
-                  color="primary"
-                  aria-label="Apps"
-                >
-                  <GridViewRoundedIcon />
-                </IconButton>
-              }
-              menus={[
-                {
-                  label: 'Feed',
-                  active: true,
-                  href: '/feed',
-                },
-                {
-                  label: 'Team',
-                  href: '/team',
-                },
-                {
-                  label: 'Files',
-                  href: '/files',
-                },
-              ]}
+      <Container maxWidth="lg">
+        <Header title="Blog" sections={sections} />
+        <main>
+          <MainFeaturedPost post={mainFeaturedPost} />
+          <Grid container spacing={4}>
+            {featuredPosts && featuredPosts.map((post) => (
+              <FeaturedPost key={post.title} post={post} />
+            ))}
+          </Grid>
+          <Grid container spacing={5} sx={{ mt: 3 }}>
+            <Main title="From the firehose" />
+            <Sidebar
+              title={sidebar.title}
+              description={sidebar.description}
+              archives={sidebar.archives}
+              social={sidebar.social}
             />
-            <ColorSchemeToggle />
-          </Box>
-        </Layout.Header>
-        <Layout.SideNav>
-          <Navigation />
-        </Layout.SideNav>
-        <Layout.Main>
-          {posts.map((post) => <EmailContent posts={post} />)}
-        </Layout.Main>
-        <Layout.SidePane>
-          <Box
-            sx={{
-              p: 2,
-              mb: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography
-              textColor="neutral.500"
-              fontWeight={700}
-              sx={{
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '.1rem',
-              }}
-            >
-              Unread
-            </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-              onClick={() => {
-                console.log('UNREAD');
-              }}
-            >
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <Box sx={{ py: 10 }}>
-            <Typography
-              textColor="text.tertiary"
-              level="body2"
-              sx={{ textAlign: 'center' }}
-            >
-              You&apos;ve read all messages in your inbox.
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              p: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography
-              textColor="neutral.500"
-              fontWeight={700}
-              sx={{
-                fontSize: '10px',
-                textTransform: 'uppercase',
-                letterSpacing: '.1rem',
-              }}
-            >
-              Everything else
-            </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-            >
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <Mails />
-        </Layout.SidePane>
-      </Layout.Root>
-    </CssVarsProvider>
+          </Grid>
+        </main>
+      </Container>
+      <Footer
+        title="Footer"
+        description="Something here to give the footer a purpose!"
+      />
+    </ThemeProvider>
   );
 }

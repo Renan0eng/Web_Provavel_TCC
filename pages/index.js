@@ -1,240 +1,382 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import GlobalStyles from '@mui/joy/GlobalStyles';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Checkbox from '@mui/joy/Checkbox';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
-import Input from '@mui/joy/Input';
-import Typography from '@mui/joy/Typography';
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
-import customTheme from '../public/theme';
-import GoogleIcon from '../Components/GoogleIcon';
+
 import { useRouter } from 'next/router';
 
-function ColorSchemeToggle({ onClick, ...props }) {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <IconButton size="sm" variant="plain" color="neutral" disabled />;
-  }
-  return (
-    <IconButton
-      id="toggle-mode"
-      size="sm"
-      variant="plain"
-      color="neutral"
-      {...props}
-      onClick={(event) => {
-        if (mode === 'light') {
-          setMode('dark');
-        } else {
-          setMode('light');
-        }
-        onClick?.(event);
-      }}
-    >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
-    </IconButton>
-  );
-}
+import { styled, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import MuiDrawer from '@mui/material/Drawer';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import BookIcon from '@mui/icons-material/Book';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailIcon from '@mui/icons-material/Email';
 
-/**
- * This template uses [`Inter`](https://fonts.google.com/specimen/Inter?query=inter) font.
- */
-export default function JoySignInSideTemplate() {
+import Link from 'next/link';
+import { display, width } from '@mui/system';
+
+const drawerWidth = 240;
+
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+      ...openedMixin(theme),
+      '& .MuiDrawer-paper': openedMixin(theme),
+    }),
+    ...(!open && {
+      ...closedMixin(theme),
+      '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+  }),
+);
+
+export default function Home() {
+
   const router = useRouter();
+
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const [id, setId] = React.useState(1)
+
+  const [dataGrid, setDataGrid] = React.useState({
+    columns: [
+      { field: 'id', headerName: 'ID', description: 'ID de Comtrole', width: 50 },
+      { field: 'nome', headerName: 'Nome', description: 'Nome do Comtrole', width: 150, editable: true },
+      { field: 'descricao', headerName: 'Descrição', description: 'Descrição do Comtrole', width: 150, editable: true },
+      { field: 'tipo', headerName: 'Tipo', description: 'Tipo do Comtrole', width: 150, editable: true },
+      { field: 'valor', headerName: 'Valor', description: 'Valor do Comtrole', width: 50, editable: true },
+    ],
+    rows: [
+      { id: 0, nome: 'Camara Fria', descricao: 'Sala fria de estocagen de peliciveis', tipo: 'Estoque', valor: '-45' },
+    ]
+  });
+
+  const newItem = {
+    id: id,
+    nome: '',
+    descricao: '',
+    tipo: '',
+    valor: ''
+  };
+
+  function addItem(array, item) {
+
+    let copyRows = Object.assign([], dataGrid.rows);
+
+    copyRows.push(item ? item : newItem);
+
+    console.log(copyRows);
+
+    let copyDataGrid = Object.assign({}, dataGrid);
+
+    copyDataGrid.rows = copyRows;
+
+    setDataGrid(copyDataGrid);
+
+    setId(id + 1);
+
+    console.log(dataGrid);
+  }
+
+  const gridWidth = dataGrid.columns.reduce((acc, column) => acc + column.width, 50);
+
+
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <CssVarsProvider
-      defaultMode="dark"
-      disableTransitionOnChange
-      theme={customTheme}
-    >
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <GlobalStyles
-        styles={{
-          ':root': {
-            '--Collapsed-breakpoint': '769px', // form will stretch when viewport is below `769px`
-            '--Cover-width': '40vw', // must be `vw` only
-            '--Form-maxWidth': '700px',
-            '--Transition-duration': '0.4s', // set to `none` to disable transition
-          },
-        }}
-      />
-      <Box
-        sx={(theme) => ({
-          width:
-            'clamp(100vw - var(--Cover-width), (var(--Collapsed-breakpoint) - 100vw) * 999, 100vw)',
-          transition: 'width var(--Transition-duration)',
-          transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
-          position: 'relative',
-          zIndex: 1,
-          display: 'flex',
-          justifyContent: 'flex-end',
-          backdropFilter: 'blur(4px)',
-          backgroundColor: 'rgba(255 255 255 / 0.6)',
-          [theme.getColorSchemeSelector('dark')]: {
-            backgroundColor: 'rgba(19 19 24 / 0.4)',
-          },
-        })}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100dvh',
-            width:
-              'clamp(var(--Form-maxWidth), (var(--Collapsed-breakpoint) - 100vw) * 999, 100%)',
-            maxWidth: '100%',
-            px: 2,
-          }}
-        >
-          <Box
-            component="header"
+      <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
             sx={{
-              py: 3,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
+              marginRight: 5,
+              ...(open && { display: 'none' }),
             }}
           >
-            <Typography
-              fontWeight="lg"
-              startDecorator={
-                <Box
-                  component="span"
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    background: (theme) =>
-                      `linear-gradient(45deg, ${theme.vars.palette.primary.solidBg}, ${theme.vars.palette.primary.solidBg} 30%, ${theme.vars.palette.primary.softBg})`,
-                    borderRadius: '50%',
-                    boxShadow: (theme) => theme.shadow.md,
-                    '--joy-shadowChannel': (theme) =>
-                      theme.vars.palette.primary.mainChannel,
-                  }}
-                />
-              }
-            >
-              Code Campus
-            </Typography>
-            <ColorSchemeToggle />
-          </Box>
-          <Box
-            component="main"
-            sx={{
-              my: 'auto',
-              py: 2,
-              pb: 5,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
-              width: 400,
-              maxWidth: '100%',
-              mx: 'auto',
-              borderRadius: 'sm',
-              '& form': {
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
-              },
-              [`& .${formLabelClasses.asterisk}`]: {
-                visibility: 'hidden',
-              },
-            }}
-          >
-            <div>
-              <Typography component="h2" fontSize="xl2" fontWeight="lg">
-                Bem vindo de volta!
-              </Typography>
-              <Typography level="body2" sx={{ my: 1, mb: 3 }}>
-                Vamos começar, faça login na sua conta.
-              </Typography>
-            </div>
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                const formElements = event.currentTarget.elements;
-                const data = {
-                  email: formElements.email.value,
-                  password: formElements.password.value,
-                  persistent: formElements.persistent.checked,
-                };
-                alert(JSON.stringify(data, null, 2));
-                router.push('/feed');
-              }}
-            >
-              <FormControl required>
-                <FormLabel>Email</FormLabel>
-                <Input placeholder="Entre com seu email" type="email" name="email" />
-              </FormControl>
-              <FormControl required>
-                <FormLabel>Senha</FormLabel>
-                <Input placeholder="•••••••" type="password" name="password" />
-              </FormControl>
-              <Box
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            Blog
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader>
+          <Typography variant="h6" noWrap component="div">
+            Menu lateral
+          </Typography>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List style={{ textDecoration: "none" }} >
+          <ListItem key={"Feed"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <Link
+              href="/feed">
+              <ListItemButton
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+                onClick={() => {
                 }}
               >
-                <Checkbox size="sm" label="Manter conectado" name="persistent" />
-                <Link fontSize="sm" href="#replace-with-a-link" fontWeight="lg">
-                  Esqueci minha senha
-                </Link>
-              </Box>
-              <Button type="submit" fullWidth>
-                Entrar
-              </Button>
-            </form>
-            <Button
-              variant="outlined"
-              color="neutral"
-              fullWidth
-              startDecorator={<GoogleIcon />}
-            >
-              Emtrar com o Google
-            </Button>
-          </Box>
-          <Box component="footer" sx={{ py: 3 }}>
-            <Typography level="body3" textAlign="center">
-              © Code Campus {new Date().getFullYear()}
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Feed"} style={{ opacity: open ? 1 : 0, color: "#555", textDecoration: "none" }} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+          <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
+            <Link style={{ fontWeight: 'bold' }} href="/blog">
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <BookIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Blog"} style={{ opacity: open ? 1 : 0, color: "#555", textDecoration: "none" }} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        </List>
+        <Divider />
+      </Drawer>
+      <Box component="main" sx={{
+        pt: 10,
+        display: 'flex',
+        flexDirection: 'column',
+        width: "100%"
+      }}>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: "center" }}>
+
+          <Typography variant="h2" component="h2" gutterBottom>
+            Renan Nardi
+          </Typography>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Bem-vindo ao meu blog de desenvolvimento!
+          </Typography>
+
+          <Typography variant="p" gutterBottom>
+            Aqui você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+          </Typography>
+
+          <Box p={1} sx={{ textAlign: "center" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Oque pretendo fazer aqui?
             </Typography>
+
+            <Typography variant="body1" gutterBottom>
+              Pretendo documentar meu progresso como programador e compartilhar alguns dos projetos que tenho desenvolvido. Aqui você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+            </Typography>
+          </Box>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%", width: "100%" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Sobre mim, um programador apaixonado
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
+            </Typography>
+
+            <Link href={"/feed"}>
+              <IconButton sx={{borderRadius: 6 }}>
+                <GitHubIcon />
+                <Typography variant="body1" pl={1} pr={1} gutterBottom >
+                  Feed
+                </Typography>
+              </IconButton>
+            </Link>
+
+          </Box>
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Entre em Contato
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Se você estiver interessado em entrar em contato comigo para discutir algum projeto ou compartilhar suas ideias, basta me enviar uma mensagem pelas minhasredes sociais ou pelo meu email.
+            </Typography>
+
+            <Link href={"https://www.instagram.com/renan_nardii/"} target={"_blank"} >
+              <IconButton>
+                <InstagramIcon />
+              </IconButton>
+            </Link>
+            <Link href={"https://www.linkedin.com/in/renan-nardi-0b0b1b1b9/"} target={"_blank"} >
+              <IconButton>
+                <LinkedInIcon />
+              </IconButton>
+            </Link>
+            <Link href={"https://github.com/Renan0eng"} target={"_blank"} >
+              <IconButton>
+                <GitHubIcon />
+              </IconButton>
+            </Link>
+            <Link href={"mailto:renan.nardi.dev@gmail.com"} target={"_blank"} >
+              <IconButton>
+                <EmailIcon />
+              </IconButton>
+            </Link>
+          </Box>
+
+          <Box p={1} sx={{ textAlign: "center", borderTop: "1px solid #ccc", width: "100%" }}>
+            <Typography variant="h5" component="h2" gutterBottom p={3} pt={5}>
+              Projetos
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Aqui estão alguns dos projetos que tenho desenvolvido. Clique em um projeto para saber mais sobre ele.
+            </Typography>
+
+            <Box>
+              <Box pt={5}>
+                <Link href={"https://github.com/Renan0eng/Site-Analise-De-Solo"} target={"_blank"} >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </Link>
+                <Typography variant="h6" gutterBottom>
+                  ESP32 Web Server - Temperature Data
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Este é um projeto em C++ para criar um servidor web com o ESP32 que exibe dados de temperatura em tempo real.
+                </Typography>
+              </Box>
+              <Box pt={3}>
+                <Link href={"https://github.com/Renan0eng/Provavel_TCC"} target={"_blank"} >
+                  <IconButton>
+                    <GitHubIcon />
+                  </IconButton>
+                </Link>
+                <Typography variant="h6" gutterBottom>
+                  Sistema de Controle de produção e abate de peixe
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  Este é um projeto em C# para criar um sistema de controle de produção de peixe.<br />
+                  E comtrole da parte do frigorifico de abate de peixe.<br />
+                  Onde o sistema ira controlar a temperatura, o tempo de abate, o tempo de resfriamento, o tempo de limpeza, o tempo de desinfecção, o tempo de secagem, o tempo de embalagem, e tempo de armazenamento.
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{
+            mt: 8,
+            width: "100%",
+            backgroundColor: "#333",
+            color: "#fff",
+            padding: 2,
+            bottom: 0,
+            textAlign: "center",
+          }}
+          >
+            <Typography variant="p" gutterBottom>
+              Copyright &copy; 2023 - Todos os direitos reservados
+            </Typography>
+            <Link href={"/blog/login"} target={"_blank"}>
+              <Box sx={{width:"100%", height:"10%",backgroundColor: "#333"}}>
+
+              </Box>
+            </Link>
+
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={(theme) => ({
-          height: '100%',
-          position: 'fixed',
-          right: 0,
-          top: 0,
-          bottom: 0,
-          left: 'clamp(0px, (100vw - var(--Collapsed-breakpoint)) * 999, 100vw - var(--Cover-width))',
-          transition:
-            'background-image var(--Transition-duration), left var(--Transition-duration) !important',
-          transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
-          backgroundColor: 'background.level1',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1527181152855-fc03fc7949c8)',
-          [theme.getColorSchemeSelector('dark')]: {
-            backgroundImage:
-              'url(https://images.unsplash.com/photo-1572072393749-3ca9c8ea0831)',
-          },
-        })}
-      />
-    </CssVarsProvider>
+    </Box >
   );
 }
