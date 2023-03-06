@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import Markdown from './Markdown';
+import { Card, CardContent, Box } from '@mui/material';
 
-function Main(props) {
-  const { posts, title } = props;
+function Main({ title, post }) {
 
   return (
     <Grid
@@ -22,12 +21,17 @@ function Main(props) {
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
-      <Divider />
-      {posts && posts.map((post) => (
-        <Markdown className="markdown" key={post.substring(0, 40)}>
-          {post}
-        </Markdown>
-      ))}
+      <Divider sx={{
+        marginBottom: 3,
+      }} />
+
+      <Card sx={{ display: 'flex', marginBottom: 5, borderRadius: 2 }}>
+        <CardContent sx={{ flex: 1 }}>
+          <Box pb={2}
+            dangerouslySetInnerHTML={{ __html: post }}
+          />
+        </CardContent>
+      </Card>
     </Grid>
   );
 }

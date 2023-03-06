@@ -57,8 +57,6 @@ const featuredPosts = [
   },
 ];
 
-// const posts = [post2, post3];
-
 const sidebar = {
   title: 'About',
   description:
@@ -83,25 +81,26 @@ const sidebar = {
   ],
 };
 
+const post = '<h1>Teste poste com html</h1><h3><br></h3><h3>Motivos para usar este site.</h3><ul><li>Este site é focado em ajudar os alunos </li><li>Este site não tem fins lucrativos</li><li>Este site pode ser editado por vc no <a href="https://github.com/Renan0eng/CodeCampus" rel="noopener noreferrer" target="_blank">GitHub</a> </li><li>Este site é <strong>nosso</strong></li></ul><p><br></p><h3>Onde me encontra?</h3><ul><li><a href="https://github.com/Renan0eng" rel="noopener noreferrer" target="_blank">GitHub</a></li><li><a href="https://www.instagram.com/renan_nardii/" rel="noopener noreferrer" target="_blank">Instagram</a></li><li><a href="https://www.linkedin.com/in/renan-nardi-569300223" rel="noopener noreferrer" target="_blank">LinkedIn</a> </li></ul>'
 
 export default function Blog() {
 
-const theme = createTheme();
+  const theme = createTheme();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Header title="Blog" sections={sections} />
+        <Header title="Diário de um Programador" sections={sections} />
         <main>
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts && featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post} />
+              <FeaturedPost key={post.title} post={post}/>
             ))}
           </Grid>
           <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Main title="From the firehose" />
+            <Main title="From the firehose" post={post} />
             <Sidebar
               title={sidebar.title}
               description={sidebar.description}
@@ -113,7 +112,7 @@ const theme = createTheme();
       </Container>
       <Footer
         title="Footer"
-        description="Something here to give the footer a purpose!"
+        description="Todos os direitos reservados. Desenvolvido por Renan Nardi. Aprecie a jornada enquanto aprende e evolui com as tecnologias mais recentes."
       />
     </ThemeProvider>
   );

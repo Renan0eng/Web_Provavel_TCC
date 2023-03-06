@@ -8,12 +8,13 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
 function Header(props) {
+
   const { sections, title } = props;
 
   return (
     <React.Fragment>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Button size="small">Subscribe</Button>
+        {/* <Button size="small">Subscribe</Button> */}
         <Typography
           component="h2"
           variant="h5"
@@ -24,12 +25,14 @@ function Header(props) {
         >
           {title}
         </Typography>
-        <IconButton>
+        {/* <IconButton>
           <SearchIcon />
-        </IconButton>
-        <Button variant="outlined" size="small">
-          Sign up
-        </Button>
+        </IconButton> */}
+        <Link href="/login" color="text.primary" variant="body2" underline="none">
+          <Button variant="outlined" size="small" >
+            Sign up
+          </Button>
+        </Link>
       </Toolbar>
       <Toolbar
         component="nav"
@@ -43,9 +46,11 @@ function Header(props) {
             key={section.title}
             variant="body2"
             href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
+            sx={{ p: 1, flexShrink: 0, textDecoration: 'none' }}
           >
-            {section.title}
+            <Button variant="text" size="small">
+              {section.title}
+            </Button>
           </Link>
         ))}
       </Toolbar>

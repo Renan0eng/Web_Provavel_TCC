@@ -276,11 +276,19 @@ export default function Home() {
               Sou um programador apaixonado e estou sempre em busca de novos desafios e projetos para trabalhar. Aqui, você pode acompanhar meu progresso e conhecer alguns dos projetos que tenho desenvolvido.
             </Typography>
 
-            <Link href={"/feed"}>
-              <IconButton sx={{borderRadius: 6 }}>
-                <GitHubIcon />
-                <Typography variant="body1" pl={1} pr={1} gutterBottom >
-                  Feed
+            <Link href={"/feed"} style={{ textDecoration: "none" }}>
+              <IconButton sx={{ borderRadius: 6, alignItems: 'center' }}>
+                <BookIcon sx={{
+                  color: "#555",
+                }} />
+                <Typography variant="body1" pl={1} pr={1} gutterBottom
+                  sx={{
+                    color: "#555",
+                    fontWeight: "bold",
+                    margin: 'auto',
+                  }}
+                >
+                  Blog
                 </Typography>
               </IconButton>
             </Link>
@@ -382,7 +390,7 @@ export default function Home() {
               Copyright &copy; 2023 - Todos os direitos reservados
             </Typography>
             <Link href={"/blog/login"} target={"_blank"}>
-              <Box sx={{width:"100%", height:"10%",backgroundColor: "#333"}}>
+              <Box sx={{ width: "100%", height: "10%", backgroundColor: "#333" }}>
 
               </Box>
             </Link>
