@@ -215,7 +215,7 @@ export default function Home() {
             </Link>
           </ListItem>
           <ListItem key={"text"} disablePadding sx={{ display: 'block', mardin: 5 }}>
-            <Link style={{ fontWeight: 'bold' }} href="/blog">
+            <Link style={{ fontWeight: 'bold' }} href="/feed">
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -389,7 +389,7 @@ export default function Home() {
             <Typography variant="p" gutterBottom>
               Copyright &copy; 2023 - Todos os direitos reservados
             </Typography>
-            <Link href={"/blog/login"} target={"_blank"}>
+            <Link href={"/feed/login"} target={"_blank"}>
               <Box sx={{ width: "100%", height: "10%", backgroundColor: "#333" }}>
 
               </Box>

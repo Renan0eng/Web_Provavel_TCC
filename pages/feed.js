@@ -17,16 +17,16 @@ import Footer from '../Components/Footer';
 // import post3 from '../components/blog-post.3.md';
 
 const sections = [
-  { title: 'Technology', url: '#' },
-  { title: 'Design', url: '#' },
-  { title: 'Culture', url: '#' },
-  { title: 'Business', url: '#' },
-  { title: 'Politics', url: '#' },
-  { title: 'Opinion', url: '#' },
-  { title: 'Science', url: '#' },
-  { title: 'Health', url: '#' },
-  { title: 'Style', url: '#' },
-  { title: 'Travel', url: '#' },
+  // { title: 'Technology', url: '#' },
+  // { title: 'Design', url: '#' },
+  // { title: 'Culture', url: '#' },
+  // { title: 'Business', url: '#' },
+  // { title: 'Politics', url: '#' },
+  // { title: 'Opinion', url: '#' },
+  // { title: 'Science', url: '#' },
+  // { title: 'Health', url: '#' },
+  // { title: 'Style', url: '#' },
+  // { title: 'Travel', url: '#' },
 ];
 
 const mainFeaturedPost = {
@@ -96,7 +96,7 @@ export default function Blog() {
           <MainFeaturedPost post={mainFeaturedPost} />
           <Grid container spacing={4}>
             {featuredPosts && featuredPosts.map((post) => (
-              <FeaturedPost key={post.title} post={post}/>
+              <FeaturedPost key={post.title} post={post} />
             ))}
           </Grid>
           <Grid container spacing={5} sx={{ mt: 3 }}>

@@ -11,6 +11,8 @@ function Header(props) {
 
   const { sections, title } = props;
 
+  const [search, setSearch] = React.useState(false);
+
   return (
     <React.Fragment>
       <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -25,14 +27,20 @@ function Header(props) {
         >
           {title}
         </Typography>
-        {/* <IconButton>
+        <IconButton
+          onClick={() => {
+
+            setSearch(true);
+          }}
+        >
+
           <SearchIcon />
-        </IconButton> */}
-        <Link href="/login" color="text.primary" variant="body2" underline="none">
+        </IconButton>
+        {/* <Link href="/login" color="text.primary" variant="body2" underline="none">
           <Button variant="outlined" size="small" >
             Sign up
           </Button>
-        </Link>
+        </Link> */}
       </Toolbar>
       <Toolbar
         component="nav"
